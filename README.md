@@ -1,17 +1,8 @@
 <p align="center"><a href="https://github.com/taufiqalif" target="_blank">
 <img src="img/taufiq.png" width="400"></a></p>
 
-<tr>
-<td width="200">DATA DIRI</td>
-<td width="400">KETERANGAN</td>
-<td width="200">FOTO</td>
-</tr>
-
-<tr>
-<td>Nama</td>
-<td>Riski Dewanto</td>
-<td rowspan="7"><img src="riski.jpeg" width="200"></td>
-</tr>
+<h3 align="center">Nama</h3>
+<p align="center">Taufiq ALif Rahman</p>
 
 ## Membuat databases
 
