@@ -27,8 +27,8 @@ $result = mysqli_query($conn, $sql);
           <th>Gambar</th>
           <th>Nama Barang</th>
           <th>Katagori</th>
-          <th>Harga Jual</th>
           <th>Harga Beli</th>
+          <th>Harga Jual</th>
           <th>Stok</th>
           <th>Aksi</th>
         </tr>
