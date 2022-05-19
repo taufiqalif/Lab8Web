@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
 
           <div class="mb-3">
             <label for="formFile" class="form-label">Upload file gambar</label>
-            <input class="form-control" name="file_gambar" type="file" id="formFile">
+            <input class="form-control" name="file_gambar" required type="file" id="formFile">
           </div>
         </div>
         <div class="submit">
