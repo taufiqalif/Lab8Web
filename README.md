@@ -1,9 +1,6 @@
 <p align="center"><a href="https://github.com/taufiqalif" target="_blank">
 <img src="img/taufiq.png" width="400"></a></p>
 
-<h3 align="center">Nama</h3>
-<p align="center">Taufiq ALif Rahman</p>
-
 ## Membuat databases
 
 1. ![db-01.png](img/db-01.png)
