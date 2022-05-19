@@ -1,5 +1,5 @@
 <p align="center"><a href="https://github.com/taufiqalif" target="_blank">
-<img src="img/taufiq.png" width="400"></a></p>
+<img src="img/taufiq.png" width="400" background-color= "#878787"></a></p>
 
 ## Membuat databases
 
