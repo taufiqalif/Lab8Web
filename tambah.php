@@ -47,6 +47,8 @@ if (isset($_POST['submit'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
@@ -77,8 +79,13 @@ if (isset($_POST['submit'])) {
           <label>Stok</label>
           <input type="number" name="stok" required />
 
-          <label>File Gambar</label>
-          <input type="file" name="file_gambar" required />
+          <!-- <label>File Gambar</label>
+          <input type="file" name="file_gambar" required /> -->
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Upload file gambar</label>
+            <input class="form-control" name="file_gambar" type="file" id="formFile">
+          </div>
         </div>
         <div class="submit">
           <!-- <input type="submit" name="submit" value="Simpan" /> -->

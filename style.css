@@ -83,7 +83,7 @@ tr:hover {
 
 .input {
   width: 50%;
-  padding: 12px 20px;
+  padding: 10px 15px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -95,7 +95,7 @@ input[type='text'],
 [type='number'],
 select {
   width: 100%;
-  padding: 12px 20px;
+  padding: 10px 15px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
