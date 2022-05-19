@@ -1,6 +1,6 @@
 <?php 
 error_reporting(E_ALL);
-include_once 'koneksi/koneksi.php';
+require 'koneksi/koneksi.php';
 
 // mengambil id di URL
 $id = $_GET['id_barang'];
@@ -8,36 +8,33 @@ $id = $_GET['id_barang'];
 // query data barang
 $barang = query("SELECT * FROM data_barang WHERE id_barang = $id")[0];
 
-
-
-
 if (isset($_POST['submit'])) {
-  $id = $_POST['id_barang'];
-  $nama = htmlspecialchars($_POST['nama']);
-  $kategori = htmlspecialchars($_POST['kategori']);
-  $harga_jual = htmlspecialchars($_POST['harga_jual']);
-  $harga_beli = htmlspecialchars($_POST['harga_beli']);
-  $stok = htmlspecialchars($_POST['stok']);
-  $file_gambar = $_POST['file_gambar'];
-  $gambar = null;
-  if ($file_gambar['error'] == 0) {
-    $filename = str_replace(' ', '_',$file_gambar['name']);
-    $destination = dirname(__FILE__) .'/gambar/' . $filename;
-      if(move_uploaded_file($file_gambar['tmp_name'], $destination)){
-        $gambar =  $filename;
-      }
-  }
-  $query = "UPDATE data_barang SET 
-          kategori = '$kategori', 
-          nama = '$nama', 
-          gambar = '$gambar', 
-          harga_beli = '$harga_beli', 
-          harga_jual = '$harga_jual', 
-          stok = '$stok' 
-          WHERE id_barang = $id";
-  mysqli_query($conn, $query);
+  // $id = $_POST['id_barang'];
+  // $nama = htmlspecialchars($_POST['nama']);
+  // $kategori = htmlspecialchars($_POST['kategori']);
+  // $harga_jual = htmlspecialchars($_POST['harga_jual']);
+  // $harga_beli = htmlspecialchars($_POST['harga_beli']);
+  // $stok = htmlspecialchars($_POST['stok']);
+  // $file_gambar = $_POST['file_gambar'];
+  // $gambar = null;
+  // if ($file_gambar['error'] == 0) {
+  //   $filename = str_replace(' ', '_',$file_gambar['name']);
+  //   $destination = dirname(__FILE__) .'/gambar/' . $filename;
+  //     if(move_uploaded_file($file_gambar['tmp_name'], $destination)){
+  //       $gambar =  $filename;
+  //     }
+  // }
+  // $query = "UPDATE data_barang SET 
+  //         kategori = '$kategori', 
+  //         nama = '$nama', 
+  //         gambar = '$gambar', 
+  //         harga_beli = '$harga_beli', 
+  //         harga_jual = '$harga_jual', 
+  //         stok = '$stok' 
+  //         WHERE id_barang = $id";
+  // mysqli_query($conn, $query);
 
-  if (mysqli_affected_rows($conn) > 0) {
+  if (ubah($data) > 0) {
     echo "
       <script>
         alert('Data berhasil diubah');
