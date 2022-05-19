@@ -7,6 +7,12 @@
 <td width="200">FOTO</td>
 </tr>
 
+<tr>
+<td>Nama</td>
+<td>Riski Dewanto</td>
+<td rowspan="7"><img src="riski.jpeg" width="200"></td>
+</tr>
+
 ## Membuat databases
 
 1. ![db-01.png](img/db-01.png)
