@@ -1,40 +1,31 @@
-<?php 
+<?php
 error_reporting(E_ALL);
-require 'koneksi/koneksi.php';
-
-// mengambil id di URL
-$id = $_GET['id_barang'];
-
-// query data barang
-$barang = query("SELECT * FROM data_barang WHERE id_barang = $id")[0];
-
+include_once 'koneksi/koneksi.php';
 if (isset($_POST['submit'])) {
-  // $id = $_POST['id_barang'];
-  // $nama = htmlspecialchars($_POST['nama']);
-  // $kategori = htmlspecialchars($_POST['kategori']);
-  // $harga_jual = htmlspecialchars($_POST['harga_jual']);
-  // $harga_beli = htmlspecialchars($_POST['harga_beli']);
-  // $stok = htmlspecialchars($_POST['stok']);
-  // $file_gambar = $_POST['file_gambar'];
-  // $gambar = null;
-  // if ($file_gambar['error'] == 0) {
-  //   $filename = str_replace(' ', '_',$file_gambar['name']);
-  //   $destination = dirname(__FILE__) .'/gambar/' . $filename;
-  //     if(move_uploaded_file($file_gambar['tmp_name'], $destination)){
-  //       $gambar =  $filename;
-  //     }
-  // }
-  // $query = "UPDATE data_barang SET 
-  //         kategori = '$kategori', 
-  //         nama = '$nama', 
-  //         gambar = '$gambar', 
-  //         harga_beli = '$harga_beli', 
-  //         harga_jual = '$harga_jual', 
-  //         stok = '$stok' 
-  //         WHERE id_barang = $id";
-  // mysqli_query($conn, $query);
-
-  if (ubah($data) > 0) {
+  $id_barang = $_POST['id_barang'];
+  $nama = $_POST['nama'];
+  $kategori = $_POST['kategori'];
+  $harga_jual = $_POST['harga_jual'];
+  $harga_beli = $_POST['harga_beli'];
+  $stok = $_POST['stok'];
+  $file_gambar = $_FILES['file_gambar'];
+  $gambar = null;
+  if ($file_gambar['error'] == 0) {
+    $filename = str_replace(' ', '_', $file_gambar['name']);
+    $destination = dirname(__FILE__) . '/gambar/' . $filename;
+    if (move_uploaded_file($file_gambar['tmp_name'], $destination)) {
+      $gambar = $filename;;
+    }
+  }
+  $sql = 'UPDATE data_barang SET ';
+  $sql .= "nama = '{$nama}', kategori = '{$kategori}', ";
+  $sql .= "harga_jual = '{$harga_jual}', harga_beli = '{$harga_beli}', stok = '{$stok}' ";
+  if (!empty($gambar))
+    $sql .= ", gambar = '{$gambar}' ";
+  $sql .= "WHERE id_barang = '{$id_barang}'";
+  $result = mysqli_query($conn, $sql);
+  
+  if (mysqli_affected_rows($conn) > 0) {
     echo "
       <script>
         alert('Data berhasil diubah');
@@ -53,9 +44,16 @@ if (isset($_POST['submit'])) {
   // header('location: index.php');
 }
 
-function is_select($var, $val) { 
-  if ($var == $val) return 'selected="selected"'; 
-  return false; }
+$idd = $_GET['id_barang'];
+$sql = "SELECT * FROM data_barang WHERE id_barang = '$idd'";
+$result = mysqli_query($conn, $sql);
+if (!$result) die('Error: Data tidak tersedia');
+$data = mysqli_fetch_array($result);
+function is_select($var, $val)
+{
+  if ($var == $val) return 'selected="selected"';
+  return false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -77,37 +75,35 @@ function is_select($var, $val) {
     <a href="index.php" class="data">Data Barang</a>
     <div class="main">
       <form method="post" action="ubah.php" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $barang["id_barang"]; ?>" />
         <div class="input">
 
           <label>Nama Barang</label>
-          <input type="text" name="nama" required value="<?= $barang["nama"]; ?>" />
+          <input type="text" name="nama" required value="<?= $data["nama"]; ?>" />
 
           <label>Kategori</label>
           <select name="kategori">
-            <option value="Komputer" <?php if( $barang["kategori"]== 'Komputer') echo 'selected';?>>Komputer</option>
-            <option value="Elektronik" <?php if( $barang["kategori"]== 'Elektronik') echo 'selected';?>>Elektronik
+            <option <?php echo is_select('Komputer', $data['kategori']); ?> value="Komputer">Komputer</option>
+            <option <?php echo is_select('Komputer', $data['kategori']); ?> value="Elektronik">Elektronik
             </option>
-            <option value="HandPhone" <?php if( $barang["kategori"]== 'HandPhone') echo 'selected';?>>Hand Phone
+            <option <?php echo is_select('Komputer', $data['kategori']); ?> value="HandPhone">Hand Phone
             </option>
           </select>
 
           <label>Harga Jual</label>
-          <input type="number" name="harga_jual" required value="<?= $barang["harga_jual"]; ?>" />
+          <input type="number" name="harga_jual" required value="<?= $data["harga_jual"]; ?>" />
 
           <label>Harga Beli</label>
-          <input type="number" name="harga_beli" required value="<?= $barang["harga_beli"]; ?>" />
+          <input type="number" name="harga_beli" required value="<?= $data["harga_beli"]; ?>" />
 
           <label>Stok</label>
-          <input type="number" name="stok" required value="<?= $barang["stok"]; ?>" />
+          <input type="number" name="stok" required value="<?= $data["stok"]; ?>" />
 
-          <!-- <label>File Gambar</label>
-          <input type="file" name="file_gambar" required value="<?= $barang["gambar"]; ?>" /> -->
+          <input type="hidden" name="id_barang" value="<?php echo $data['id_barang']; ?>" />
 
           <div class="mb-3">
             <label for="formFile" class="form-label">Upload file gambar</label>
             <input class="form-control" name="file_gambar" type="file" id="formFile" required
-              value="<?= $barang["gambar"];?>">
+              value="<?= $data["gambar"];?>">
           </div>
         </div>
         <div class="submit">
