@@ -33,10 +33,10 @@ $result = mysqli_query($conn, $sql);
           <th>Aksi</th>
         </tr>
         <?php if($result): ?>
-        <?php $i = 1; ?>
+        <?php $a = 1; ?>
         <?php while($row = mysqli_fetch_array($result)):  ?>
         <tr>
-          <td><?= $i; ?></td>
+          <td><?= $a; ?></td>
           <td><img src="gambar/<?= $row['gambar'];?>" alt="<?= $row['nama'];?>" width="100">
           </td>
           <td><?= $row['nama'];?></td>
@@ -49,7 +49,7 @@ $result = mysqli_query($conn, $sql);
             <a href="hapus.php?id_barang=<?= $row['id_barang'];?>" class="button1">Hapus</a>
           </td>
         </tr>
-        <?php $i++; ?>
+        <?php $a++; ?>
         <?php endwhile; else: ?>
         <tr>
           <td colspan="7">Belum ada data</td>
